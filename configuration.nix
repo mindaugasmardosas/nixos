@@ -135,6 +135,8 @@
     brave
     go
     python3
+    ruby
+    zip
     remmina
     filezilla
     git
@@ -153,6 +155,7 @@
     vscode
     opentofu
     terraform
+    packer
     ntfs3g
     libreoffice
     wireshark
@@ -162,8 +165,6 @@
     #tlp
     opera    
     discord
-    maestral
-    maestral-gui
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
