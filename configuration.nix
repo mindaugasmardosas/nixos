@@ -165,6 +165,11 @@
     #tlp
     opera    
     discord
+    gcc
+    autoconf
+    automake
+    libtool
+    gnumake
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -195,10 +200,17 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
  
+
   # Auto upgrades
-  system.autoUpgrade.enable = true;
+  system.autoUpgrade.enable = false;
   system.autoUpgrade.allowReboot = false;
   system.autoUpgrade.channel = "https://channels.nixos.org/nixos-23.11";
+
+  nix.gc = {
+    automatic = true;
+    randomizedDelaySec = "14m";
+    options = "--delete-older-than 10d";
+  };
 
 }
 
