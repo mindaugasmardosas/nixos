@@ -48,7 +48,7 @@
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.host.enableExtensionPack = true;
   virtualisation.virtualbox.guest.enable = true;
-  virtualisation.virtualbox.guest.x11 = true;
+  #virtualisation.virtualbox.guest.x11 = true;
 
   # Battery mgmt
   services.power-profiles-daemon.enable = true;
@@ -204,7 +204,7 @@
   # Auto upgrades
   system.autoUpgrade.enable = false;
   system.autoUpgrade.allowReboot = false;
-  system.autoUpgrade.channel = "https://channels.nixos.org/nixos-23.11";
+  system.autoUpgrade.channel = "https://channels.nixos.org/nixos-24.05";
 
   nix.gc = {
     automatic = true;
