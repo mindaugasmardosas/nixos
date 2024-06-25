@@ -170,6 +170,8 @@
     automake
     libtool
     gnumake
+    google-chrome
+    sticky
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
