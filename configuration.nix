@@ -172,6 +172,8 @@
     gnumake
     google-chrome
     sticky
+    minikube
+    kubectl
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
