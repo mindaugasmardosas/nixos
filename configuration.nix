@@ -174,6 +174,7 @@
     sticky
     minikube
     kubectl
+    argocd
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
