@@ -11,10 +11,27 @@
     ];
 
   # Bootloader.
+
+  # Ensure the system can use the swap file
+  boot.initrd.availableKernelModules = [ "loop" ];
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10; # Optional: Adjust swappiness
+  };
+  #boot.kernelParams = [ "resume=/swapfile" ];
+
+  # Optional: if you have a specific swap partition for hibernation
+  #swapDevices = [
+  #  {
+  #    device = "/swapfile";
+  #    size = 32000; # Size in MB
+  #  }
+  #] 
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+
+  networking.hostName = "t14"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -175,6 +192,7 @@
     minikube
     kubectl
     argocd
+    gparted
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
