@@ -17,15 +17,15 @@
   boot.kernel.sysctl = {
     "vm.swappiness" = 10; # Optional: Adjust swappiness
   };
-  #boot.kernelParams = [ "resume=/swapfile" ];
+  boot.kernelParams = [ "resume=/swapfile" ];
 
   # Optional: if you have a specific swap partition for hibernation
-  #swapDevices = [
-  #  {
-  #    device = "/swapfile";
-  #    size = 32000; # Size in MB
-  #  }
-  #] 
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 32000;
+    }
+  ]; 
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -91,6 +91,18 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
+  # GNOME configuration for hibernation
+  # Correct way to apply custom session commands
+  environment.etc."profile.d/enable-hibernation.sh".text = ''
+    #!/bin/sh
+    # Command to enable hibernation in the GNOME menu
+    gsettings set org.gnome.settings-daemon.plugins.power button-hibernate 'hibernate'
+    gsettings set org.gnome.settings-daemon.plugins.power critical-battery-action 'hibernate'
+  '';
+
+  # Ensure this script is executable
+  environment.etc."profile.d/enable-hibernation.sh".mode = "0755";
 
   services.sshd.enable = true;
 
@@ -193,6 +205,9 @@
     kubectl
     argocd
     gparted
+    audacious
+    nextcloud-client
+    dropbox
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
