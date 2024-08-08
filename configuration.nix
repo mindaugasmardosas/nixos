@@ -190,7 +190,6 @@
     signal-desktop
     openvpn
     deluge
-    yakuake
     vscode
     opentofu
     terraform
@@ -217,7 +216,9 @@
     gparted
     audacious
     nextcloud-client
-    dropbox
+    mlocate
+    naps2
+    okular
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -234,8 +235,9 @@
   services.openssh.enable = true;
   services.openssh.ports = [ 2222 ];
 
+
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 2222 ];
+  # networking.firewall.allowedTCPPorts = [ 2222 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
