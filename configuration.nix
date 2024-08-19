@@ -259,6 +259,7 @@
   nix.gc = {
     automatic = true;
     randomizedDelaySec = "14m";
+    dates = "daily";
     options = "--delete-older-than 10d";
   };
 
