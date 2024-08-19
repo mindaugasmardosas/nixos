@@ -219,6 +219,7 @@
     mlocate
     naps2
     okular
+    zsh
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
