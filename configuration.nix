@@ -220,6 +220,7 @@
     naps2
     okular
     zsh
+    yubikey-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
