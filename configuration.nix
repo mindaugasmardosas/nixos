@@ -225,8 +225,15 @@
     okular
     zsh
     yubikey-manager
+    yubioath-flutter
+    pcsclite
   ];
 
+  services.udev.packages = [ pkgs.yubikey-personalization ];
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -241,6 +248,8 @@
   services.openssh.enable = true;
   services.openssh.ports = [ 2222 ];
 
+  # Needed for yubikey usage
+  services.pcscd.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 2222 ];
