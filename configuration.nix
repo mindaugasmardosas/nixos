@@ -250,7 +250,6 @@
 
   # Needed for yubikey usage
   services.pcscd.enable = true;
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 2222 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -275,7 +274,7 @@
     automatic = true;
     randomizedDelaySec = "14m";
     dates = "daily";
-    options = "--delete-older-than 10d";
+    options = "--delete-older-than 10d  --keep-going 3 ";
   };
 
 }
