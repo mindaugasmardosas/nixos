@@ -166,6 +166,10 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1w"
+  ];
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -227,6 +231,7 @@
     yubikey-manager
     yubioath-flutter
     pcsclite
+    viber
   ];
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
@@ -274,7 +279,7 @@
     automatic = true;
     randomizedDelaySec = "14m";
     dates = "daily";
-    options = "--delete-older-than 10d  --keep-going 3 ";
+    options = "--delete-older-than 20d  --keep-going 3 ";
   };
 
 }
