@@ -51,8 +51,8 @@
   services.xserver.enable = true;
   services.flatpak.enable = true;
 
-  # OneDrive 
-  #services.onedrive.enable = true;
+  # Onedrive https://nixos.wiki/wiki/OneDrive
+  services.onedrive.enable =true;
 
 
   # Docker
@@ -223,7 +223,7 @@
     argocd
     gparted
     audacious
-    nextcloud-client
+    #nextcloud-client
     mlocate
     naps2
     okular
@@ -281,6 +281,11 @@
     dates = "daily";
     options = "--delete-older-than 20d  --keep-going 3 ";
   };
+
+  systemd.tmpfiles.rules = [
+    "d /home/mm/.config/onedrive 0755 mm mm -"
+    "f /home/mm/.config/onedrive/sync_list 0644 mm mm - - keepass\nstatybu_projektai"
+  ];
 
 }
 
