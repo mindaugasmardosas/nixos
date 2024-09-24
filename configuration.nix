@@ -168,6 +168,7 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"
+    "adobe-reader-9.5.5"
   ];
 
 
@@ -232,6 +233,7 @@
     yubioath-flutter
     pcsclite
     viber
+    adobe-reader
   ];
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
