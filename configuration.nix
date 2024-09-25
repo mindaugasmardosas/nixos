@@ -234,6 +234,7 @@
     pcsclite
     viber
     adobe-reader
+    dnsutils
   ];
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
