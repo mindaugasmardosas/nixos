@@ -235,6 +235,7 @@
     viber
     adobe-reader
     dnsutils
+    azure-cli
   ];
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
