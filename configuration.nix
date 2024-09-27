@@ -49,6 +49,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+
   services.flatpak.enable = true;
 
   # Onedrive https://nixos.wiki/wiki/OneDrive
@@ -236,6 +237,8 @@
     adobe-reader
     dnsutils
     azure-cli
+    tmux
+    terminator
   ];
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
