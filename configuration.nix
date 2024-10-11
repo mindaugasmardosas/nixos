@@ -50,11 +50,11 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+
   services.flatpak.enable = true;
 
   # Onedrive https://nixos.wiki/wiki/OneDrive
   services.onedrive.enable =true;
-
 
   # Docker
   virtualisation.docker.enable = true;
@@ -102,7 +102,6 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
-
   # GNOME configuration for hibernation
   # Correct way to apply custom session commands
   environment.etc."profile.d/enable-hibernation.sh".text = ''
@@ -124,9 +123,6 @@
   #  xkbOptions = "grp:win_space_toggle";
   #};
   #console.keyMap = "us";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -291,7 +287,7 @@
 
   systemd.tmpfiles.rules = [
     "d /home/mm/.config/onedrive 0755 mm mm -"
-    "f /home/mm/.config/onedrive/sync_list 0644 mm mm - - keepass\nstatybu_projektai"
+    "f /home/mm/.config/onedrive/sync_list 0644 mm mm - - keepass\nstatybu_projektai\nInstrukcijos"
   ];
 
 }
