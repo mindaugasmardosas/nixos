@@ -193,7 +193,7 @@
     awscli
     google-cloud-sdk
     teams-for-linux
-    signal-desktop
+    #signal-desktop
     openvpn
     deluge
     vscode
