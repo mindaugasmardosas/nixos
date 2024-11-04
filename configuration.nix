@@ -194,6 +194,7 @@
     google-cloud-sdk
     teams-for-linux
     #signal-desktop
+    element
     openvpn
     deluge
     vscode
