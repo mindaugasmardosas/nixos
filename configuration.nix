@@ -125,7 +125,7 @@
   #console.keyMap = "us";
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  #sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -165,7 +165,9 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"
-    "adobe-reader-9.5.5"
+    "dotnet-core-combined"
+    "dotnet-sdk-6.0.428"
+    "dotnet-sdk-wrapped-6.0.428"
   ];
 
 
@@ -194,10 +196,12 @@
     google-cloud-sdk
     teams-for-linux
     #signal-desktop
-    element
     openvpn
     deluge
+    element
     vscode
+    ruby
+    bundler
     opentofu
     terraform
     packer
@@ -231,7 +235,6 @@
     yubioath-flutter
     pcsclite
     viber
-    adobe-reader
     dnsutils
     azure-cli
     tmux
