@@ -54,7 +54,7 @@
   services.flatpak.enable = true;
 
   # Onedrive https://nixos.wiki/wiki/OneDrive
-  services.onedrive.enable =true;
+  #services.onedrive.enable =true;
 
   # Docker
   virtualisation.docker.enable = true;
@@ -65,8 +65,16 @@
   # VirtualBox
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.host.enableExtensionPack = true;
-  virtualisation.virtualbox.guest.enable = true;
+  #virtualisation.virtualbox.guest.enable = true;
   #virtualisation.virtualbox.guest.x11 = true;
+
+  # KVM
+  #programs.virt-manager.enable = true;
+  #users.groups.libvirtd.members = ["mm"];
+  #virtualisation.libvirtd.enable = true;
+  #virtualisation.spiceUSBRedirection.enable = true;
+  #boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
+  #boot.kernelModules = [ "kvm-intel" ];
 
   # Battery mgmt
   services.power-profiles-daemon.enable = true;
@@ -94,9 +102,6 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  # Configure auto-login
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "mm";
 
   # Workaround while auto-login is not working (trying to get there twice)
   systemd.services."getty@tty1".enable = false;
@@ -152,9 +157,8 @@
     isNormalUser = true;
     description = "mm";
     extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" ];
-    packages = with pkgs; [
-      thunderbird
-    ];
+    #packages = with pkgs; [
+    #];
     openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCb/yK1rWkQ60d08ZP09i45xfcoydEirtgZuHvGZVtH4wLKdoniSMlsHTUPB77dauPkguamgh1PHz/D+XVcQIlm1dVSqPXYriz2iWYg57evUX9xog5OGQPWnY65pPfsuEOBhvDOXSzeaAhR2xps7H1AX63vDZh9OLWpAdoDpHq/ZezGMplNPvMcBeIt4DkaIflj9JcMwWl7enSG2GnaU1kLE3+E2elKfyNhTe7ydr2Wkp+qNsNHcUMxpheRW/D4Dt842tf1gSoUx/RF1N8Beva22YblckkVVKJ/Nxub0aEL9qS2xbXi7QxSbdA37TjMt0PluuRrbU+3Sm71fFi91ecn75QOdvkfF29hERWdQj5RVmTqpYUgLnpgABFVJtZ+V2yNjNf13GOSpbBkHBWtWfik2Y8XmaPwVQmNBgNgQO8Cl7f7bQ8wqVNKlfyV9v//fHHeIPTRXqVHYZnFYckfq44u9lryENUNaO0NIzRjMJfapl9bq0zNQEeg4A/DTZSOLo7oKuzUlG2Metg3yxfZVGTb+ZPjkAkOxrBnnGdlymSfLxTAMAyhJUJjTJpRidqkAjQvHFFwn3vdudOXhVpaN4aE6k1Rcf4OmxfQAaN/qpTRVS5q/Og9yclXOWYoj1JYjT3VhRf1Z9ScYGhePX8PRv6WbXn6OcatFal43AIhPPW+UQ==" ];
   };
 
@@ -164,7 +168,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1w"
+    #"openssl-1.1.1w"
     "dotnet-core-combined"
     "dotnet-sdk-6.0.428"
     "dotnet-sdk-wrapped-6.0.428"
@@ -176,7 +180,7 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    htop
+    #htop
     keepassxc
     brave
     go
@@ -191,14 +195,13 @@
     vlc
     gimp
     slack
-    guake
+    #guake
     awscli
     google-cloud-sdk
-    teams-for-linux
+    #teams-for-linux
     #signal-desktop
     openvpn
-    deluge
-    element
+    qbittorrent
     vscode
     ruby
     bundler
@@ -207,38 +210,45 @@
     packer
     ntfs3g
     libreoffice
-    wireshark
+    #wireshark
     nmap
-    micro
+    #micro
     gnomeExtensions.dash-to-dock
+    gnome-pomodoro
+    networkmanager-openvpn
     #tlp
-    opera    
-    discord
+    #opera    
+    #discord
     gcc
     autoconf
     automake
     libtool
     gnumake
     google-chrome
-    sticky
-    minikube
+    vivaldi
+    #sticky
+    #minikube
     kubectl
     argocd
     gparted
-    audacious
+    #audacious
     #nextcloud-client
     mlocate
-    naps2
+    #naps2
     okular
-    zsh
+    #zsh
     yubikey-manager
     yubioath-flutter
     pcsclite
-    viber
     dnsutils
     azure-cli
     tmux
     terminator
+    #vulnix
+    xz
+    unzip
+    unrar
+    appimage-run
   ];
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
@@ -246,13 +256,8 @@
     enable = true;
     enableSSHSupport = true;
   };
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.appimage.binfmt = true;
+
 
   # List services that you want to enable:
 
@@ -289,10 +294,10 @@
     options = "--delete-older-than 20d  --keep-going 3 ";
   };
 
-  systemd.tmpfiles.rules = [
-    "d /home/mm/.config/onedrive 0755 mm mm -"
-    "f /home/mm/.config/onedrive/sync_list 0644 mm mm - - keepass\nstatybu_projektai\nInstrukcijos"
-  ];
+#  systemd.tmpfiles.rules = [
+#    "d /home/mm/.config/onedrive 0755 mm mm -"
+#    "f /home/mm/.config/onedrive/sync_list 0644 mm mm - - keepass\nstatybu_projektai\nInstrukcijos"
+#  ];
 
 }
 
