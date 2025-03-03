@@ -57,10 +57,24 @@
   #services.onedrive.enable =true;
 
   # Docker
-  virtualisation.docker.enable = true;
+  #virtualisation.docker.enable = true;
   # all users
   #users.extraGroups = [ "docker" ];
   # For individual users just add docker group.
+  # Podman
+  virtualisation.containers.enable = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
+
 
   # VirtualBox
   virtualisation.virtualbox.host.enable = true;
@@ -180,7 +194,6 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    #htop
     keepassxc
     brave
     go
@@ -195,11 +208,8 @@
     vlc
     gimp
     slack
-    #guake
     awscli
     google-cloud-sdk
-    #teams-for-linux
-    #signal-desktop
     openvpn
     qbittorrent
     vscode
@@ -210,14 +220,12 @@
     packer
     ntfs3g
     libreoffice
-    #wireshark
     nmap
-    #micro
     gnomeExtensions.dash-to-dock
+    gnome-tweaks
+    gnome-shell-extensions
     gnome-pomodoro
     networkmanager-openvpn
-    #tlp
-    #opera    
     #discord
     gcc
     autoconf
@@ -226,15 +234,11 @@
     gnumake
     google-chrome
     vivaldi
-    #sticky
-    #minikube
     kubectl
     argocd
     gparted
-    #audacious
     #nextcloud-client
     mlocate
-    #naps2
     okular
     #zsh
     yubikey-manager
@@ -249,6 +253,11 @@
     unzip
     unrar
     appimage-run
+    podman-desktop
+    dive # look into docker image layers
+    podman-tui # status of containers in the terminal
+    docker-compose # start group of containers for dev
+    #podman-compose # start group of containers for dev
   ];
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
