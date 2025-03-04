@@ -20,4 +20,5 @@ EOF
 
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 
-
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Alt>space']"
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'lt')]"

@@ -259,6 +259,7 @@
     docker-compose # start group of containers for dev
     #podman-compose # start group of containers for dev
     firmwareLinuxNonfree
+    evolution
   ];
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
