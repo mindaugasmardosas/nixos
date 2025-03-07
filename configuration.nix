@@ -77,18 +77,18 @@
 
 
   # VirtualBox
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  #virtualisation.virtualbox.host.enable = true;
+  #virtualisation.virtualbox.host.enableExtensionPack = true;
   #virtualisation.virtualbox.guest.enable = true;
   #virtualisation.virtualbox.guest.x11 = true;
 
   # KVM
-  #programs.virt-manager.enable = true;
-  #users.groups.libvirtd.members = ["mm"];
-  #virtualisation.libvirtd.enable = true;
-  #virtualisation.spiceUSBRedirection.enable = true;
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = ["mm"];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
   #boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
-  #boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" ];
 
   # Battery mgmt
   services.power-profiles-daemon.enable = true;
