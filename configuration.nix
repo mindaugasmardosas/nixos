@@ -90,6 +90,19 @@
   #boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
   boot.kernelModules = [ "kvm-intel" ];
 
+  # Printing
+  services.printing.enable = true;
+  services.printing.drivers = [ pkgs.cnijfilter2 ];  # Canon LBP3010 driver
+
+#  systemd.services.ccpd = {
+#    description = "Canon CAPT Printer Daemon";
+#    serviceConfig = {
+#      ExecStart = "${pkgs.bash}/bin/bash -c 'LD_LIBRARY_PATH=${pkgs.cups.lib}/lib /home/mm/bin/64-bit_Driver/RPM/usr/sbin/ccpd'";
+#      Restart = "always";
+#    };
+#    wantedBy = [ "multi-user.target" ];
+#  };
+
   # Battery mgmt
   services.power-profiles-daemon.enable = true;
   #services.power-profiles-daemon.enable = false;  # disabling since conflicting with TLP
@@ -170,7 +183,7 @@
   users.users.mm = {
     isNormalUser = true;
     description = "mm";
-    extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" "lp" ];
     #packages = with pkgs; [
     #];
     openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCb/yK1rWkQ60d08ZP09i45xfcoydEirtgZuHvGZVtH4wLKdoniSMlsHTUPB77dauPkguamgh1PHz/D+XVcQIlm1dVSqPXYriz2iWYg57evUX9xog5OGQPWnY65pPfsuEOBhvDOXSzeaAhR2xps7H1AX63vDZh9OLWpAdoDpHq/ZezGMplNPvMcBeIt4DkaIflj9JcMwWl7enSG2GnaU1kLE3+E2elKfyNhTe7ydr2Wkp+qNsNHcUMxpheRW/D4Dt842tf1gSoUx/RF1N8Beva22YblckkVVKJ/Nxub0aEL9qS2xbXi7QxSbdA37TjMt0PluuRrbU+3Sm71fFi91ecn75QOdvkfF29hERWdQj5RVmTqpYUgLnpgABFVJtZ+V2yNjNf13GOSpbBkHBWtWfik2Y8XmaPwVQmNBgNgQO8Cl7f7bQ8wqVNKlfyV9v//fHHeIPTRXqVHYZnFYckfq44u9lryENUNaO0NIzRjMJfapl9bq0zNQEeg4A/DTZSOLo7oKuzUlG2Metg3yxfZVGTb+ZPjkAkOxrBnnGdlymSfLxTAMAyhJUJjTJpRidqkAjQvHFFwn3vdudOXhVpaN4aE6k1Rcf4OmxfQAaN/qpTRVS5q/Og9yclXOWYoj1JYjT3VhRf1Z9ScYGhePX8PRv6WbXn6OcatFal43AIhPPW+UQ==" ];
@@ -260,9 +273,10 @@
     #podman-compose # start group of containers for dev
     firmwareLinuxNonfree
     evolution
+    cups
   ];
 
-  services.udev.packages = [ pkgs.yubikey-personalization ];
+  services.udev.packages = [ pkgs.yubikey-personalization pkgs.cnijfilter2  ];
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
