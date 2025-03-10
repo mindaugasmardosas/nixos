@@ -274,6 +274,8 @@
     firmwareLinuxNonfree
     evolution
     cups
+    ventoy-full
+
   ];
 
   services.udev.packages = [ pkgs.yubikey-personalization pkgs.cnijfilter2  ];
