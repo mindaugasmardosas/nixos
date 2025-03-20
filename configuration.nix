@@ -232,7 +232,7 @@
     terraform
     packer
     ntfs3g
-    libreoffice
+    #libreoffice
     nmap
     gnomeExtensions.dash-to-dock
     gnome-tweaks
@@ -275,7 +275,7 @@
     evolution
     cups
     ventoy-full
-
+    onlyoffice-desktopeditors
   ];
 
   services.udev.packages = [ pkgs.yubikey-personalization pkgs.cnijfilter2  ];
